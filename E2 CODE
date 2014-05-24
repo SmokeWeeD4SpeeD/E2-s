@@ -1,0 +1,71 @@
+@name MetroPolice Sound's
+@inputs 
+@outputs 
+@persist Walksound:string
+@trigger 
+interval(10)
+runOnChat(1)
+if(clk() & owner():keyPressed("LSHIFT") & owner():keyPressed("W") | owner():keyPressed("LSHIFT") & owner():keyPressed("S") ){
+timer("walk",300) 
+
+}
+
+if(clk("walk") & owner():isOnGround()){
+owner():soundPlay(1000,1000,Walksound)      
+}
+
+
+Random = random(1,4)
+Random = round(Random)
+
+if(Random == 1){
+ Walksound = "npc/combine_soldier/gear1.wav"
+}
+
+if(Random == 2){
+ Walksound = "npc/combine_soldier/gear2.wav"
+}
+
+if(Random == 3){
+ Walksound = "npc/combine_soldier/gear3.wav"
+}
+
+if(Random == 4){
+ Walksound = "npc/combine_soldier/gear5.wav"
+
+}
+
+if ( owner():weapon():type() == "weapon_stunstick" & owner():keyAttack2() ) {timer("ragdoll",200)}
+    
+
+    if(clk("ragdoll")){
+     concmd("ulx ragdoll "+owner():aimEntity():name())
+
+}
+if(chatClk(owner()) & owner():lastSaid() == "!get"){hideChat(1),concmd("ulx strip "+owner():name()), timer("give",100) }      
+    
+
+if(chatClk(owner()) & owner():lastSaid() == "citizien"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/citizen.wav")} 
+if(chatClk(owner()) & owner():lastSaid() == "hold it"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/holdit.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "apply"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/apply.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "move it"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/moveit.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "pick up the can"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/pickupthecan2.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "move along"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/movealong3.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "noncitizien"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/noncitizen.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "amputate"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/amputate.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "shit"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/shit.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "watch it"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/watchit.wav")}
+if(chatClk(owner()) & owner():lastSaid() == ":D"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/chuckle.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "pick it up"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/youknockeditover.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "help"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/help.wav")}
+if(chatClk(owner()) & owner():lastSaid() == "final warning"){hideChat(1), owner():soundPlay(1000,1000,"npc/metropolice/vo/finalwarning.wav")}
+
+
+if(clk("give")){
+concmd("ulx give weapon_physgun")
+concmd("ulx give gmod_tool")
+concmd("ulx give weapon_stunstick")
+concmd("ulx give weapon_pistol")
+concmd("none")       
+}
+
